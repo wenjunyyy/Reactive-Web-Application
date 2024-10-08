@@ -15,7 +15,7 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public Flux<Task> getAllTask() {
+    public Flux<Task> getAllTasks() {
         return taskRepository.findAll();
     }
 
