@@ -1,16 +1,20 @@
 package com.webapplication.demo;
 
+
+
 import java.time.LocalDateTime;
+
 
 public class Task {
 
-    private Long id;
+
+    private String id;
     private String title;
     private String description;
     private LocalDateTime dueDate;
     private String status;
 
-    public Task() {
+    public Task(String id, String title, String description, LocalDateTime dueDate, String status) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -18,11 +22,11 @@ public class Task {
         this.status = status;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

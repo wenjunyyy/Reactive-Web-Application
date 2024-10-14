@@ -27,7 +27,7 @@ public class TaskHandler {
     }
 
     public Mono<ServerResponse> getTaskById(ServerRequest request) {
-        Long id = Long.parseLong(request.pathVariable("id")); //retrieve 'id' from URL and convert to Long
+        String id = request.pathVariable("id"); //retrieve 'id' from URL and convert to Long
         Mono<Task> taskMono = taskService.getTaskById(id);
         return taskMono
                 .flatMap(task -> ServerResponse.ok()
@@ -46,7 +46,9 @@ public class TaskHandler {
     }
 
     public Mono<ServerResponse> updateExistingTask(ServerRequest request) {
-        Long id = Long.parseLong(request.pathVariable("id"));
+        //Long id = Long.parseLong(request.pathVariable("id"));
+
+        String id = request.pathVariable("id");
         Mono<Task> taskMono = request.bodyToMono(Task.class);
         return taskMono
                 .flatMap(task -> taskService.updateExistingTask(id, task))
@@ -57,7 +59,7 @@ public class TaskHandler {
     }
 
     public Mono<ServerResponse> deleteTask(ServerRequest request) {
-        Long id = Long.parseLong(request.pathVariable("id"));
+        String id = request.pathVariable("id");
         return taskService.deleteTask(id)
                 .then(ServerResponse.noContent().build());
     }
